@@ -20,7 +20,6 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            /* Khoobsurat Animated Background */
             background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #0ea5e9, #0284c7);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -32,14 +31,12 @@
             color: #ffffff;
         }
 
-        /* Background ke chalne ki animation */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Sheeshe jaisa (Glassmorphism) Card */
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
@@ -54,7 +51,6 @@
             animation: fadeIn 1s ease-out;
         }
 
-        /* Card ke upar aanay ki animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -81,37 +77,70 @@
             align-items: center;
         }
 
-        /* Buttons Ka VIP Design */
+        /* BUTTONS KA MAIN DESIGN (Overflow hidden zaroori hai scanner ke liye) */
         .btn {
+            position: relative;
+            overflow: hidden; /* Yeh line scanner ko button ke bahar jane se rokti hai */
             background: linear-gradient(135deg, #f59e0b, #ea580c);
             color: white;
             padding: 15px 30px;
             text-decoration: none;
             font-size: 18px;
             font-weight: 600;
-            border-radius: 50px; /* Gol aur stylish kinare */
+            border-radius: 50px;
             width: 100%;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
             border: 2px solid transparent;
+            cursor: pointer;
         }
 
-        /* Hover (Touch karne par) Animation */
+        /* NEELAY RANG KI SCANNER LINE KA JADU */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #00e5ff; /* Chamakta hua Neela/Cyan rang */
+            box-shadow: 0 0 15px #00e5ff, 0 0 30px #00e5ff;
+            animation: scanLine 2.5s infinite linear;
+            pointer-events: none; /* Taake click karne mein masla na ho */
+            opacity: 0.8;
+        }
+
+        /* Scanner line ke upar neechay jane ki animation */
+        @keyframes scanLine {
+            0% { top: -10%; opacity: 0; }
+            10% { opacity: 1; }
+            50% { top: 110%; opacity: 1; }
+            51% { opacity: 0; top: 110%; }
+            100% { opacity: 0; top: -10%; }
+        }
+
         .btn:hover {
             transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.6);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
             border: 2px solid rgba(255,255,255,0.5);
         }
 
+        /* Button Colors */
         .btn-green { 
             background: linear-gradient(135deg, #10b981, #059669); 
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
         }
-        .btn-green:hover {
-            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.6);
+        .btn-purple { 
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9); 
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
         }
-        
-        /* WhatsApp Section */
+        .btn-whatsapp { 
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            font-size: 16px;
+            padding: 12px 25px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
         .whatsapp-section {
             margin-top: 30px;
             padding-top: 20px;
@@ -122,15 +151,6 @@
             margin-bottom: 15px;
             color: #f8fafc;
         }
-        .btn-whatsapp { 
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            font-size: 16px;
-            padding: 12px 25px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        }
-        .btn-whatsapp:hover {
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
-        }
     </style>
 </head>
 <body>
@@ -140,15 +160,39 @@
         <p>Apna matlooba tool select karein 👇</p>
 
         <div class="button-container">
-            <a href="/estimator" class="btn btn-green">🧱 Material Estimator</a>
-            <a href="/plot" class="btn">📐 Plot Size Converter</a>
+            <a href="/estimator" class="btn btn-green" onclick="playClickAndGo(event, this)">🧱 Material Estimator</a>
+            <a href="/plot" class="btn" onclick="playClickAndGo(event, this)">📐 Plot Size Converter</a>
+            <a href="https://mazdoori-tracker.vercel.app/" class="btn btn-purple" onclick="playClickAndGo(event, this)">👷 Dihari & Mazdoori Tracker</a>
             
             <div class="whatsapp-section">
                 <p class="whatsapp-text">Online work aur updates ke liye mera WhatsApp Channel join karein:</p>
-                <a href="https://whatsapp.com/channel/0029VaK76LAKQuJTl21Hqe40" target="_blank" class="btn btn-whatsapp">📱 Join WhatsApp Channel</a>
+                <a href="https://whatsapp.com/channel/0029VaK76LAKQuJTl21Hqe40" target="_blank" class="btn btn-whatsapp" onclick="playClickAndGo(event, this)">📱 Join WhatsApp Channel</a>
             </div>
         </div>
     </div>
+
+    <script>
+        // Google ka official UI click sound load karna
+        const clickSound = new Audio('https://actions.google.com/sounds/v1/ui/button_click.ogg');
+        
+        function playClickAndGo(event, element) {
+            // Foran page change hone se rokna
+            event.preventDefault(); 
+            
+            // Sound play karna
+            clickSound.currentTime = 0;
+            clickSound.play();
+            
+            // 300 milliseconds (thora sa) intezar kar ke agle page par bhejna taake awaz poori aaye
+            setTimeout(() => {
+                if(element.target === "_blank") {
+                    window.open(element.href, '_blank');
+                } else {
+                    window.location.href = element.href;
+                }
+            }, 300);
+        }
+    </script>
 
 </body>
 </html>
