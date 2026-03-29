@@ -6,76 +6,147 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-3SDDRELRNP');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Azmat Tools Collection</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: sans-serif;
-            background-color: #f3f4f6;
-            text-align: center;
-            padding: 50px 20px;
+            font-family: 'Poppins', sans-serif;
+            /* Khoobsurat Animated Background */
+            background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #0ea5e9, #0284c7);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #ffffff;
         }
-        h1 { color: #1f2937; margin-bottom: 10px; }
-        p { color: #4b5563; font-size: 18px; margin-bottom: 30px; }
+
+        /* Background ke chalne ki animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Sheeshe jaisa (Glassmorphism) Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px 20px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Card ke upar aanay ki animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #e2e8f0;
+        }
+
         .button-container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
         }
+
+        /* Buttons Ka VIP Design */
         .btn {
-            background-color: #2563eb;
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
             color: white;
             padding: 15px 30px;
             text-decoration: none;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 300px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: inline-block;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px; /* Gol aur stylish kinare */
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+            border: 2px solid transparent;
         }
-        .btn-green { background-color: #16a34a; }
+
+        /* Hover (Touch karne par) Animation */
+        .btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.6);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .btn-green { 
+            background: linear-gradient(135deg, #10b981, #059669); 
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+        .btn-green:hover {
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.6);
+        }
         
-        /* WhatsApp Button Design */
-        .btn-whatsapp { 
-            background-color: #25D366; 
-            margin-top: 10px;
-        }
+        /* WhatsApp Section */
         .whatsapp-section {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            max-width: 400px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
         .whatsapp-text {
-            color: #1f2937;
-            font-size: 16px;
+            font-size: 14px;
             margin-bottom: 15px;
-            font-weight: bold;
+            color: #f8fafc;
+        }
+        .btn-whatsapp { 
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            font-size: 16px;
+            padding: 12px 25px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+        .btn-whatsapp:hover {
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
         }
     </style>
 </head>
 <body>
 
-    <h1>Azmat Tools Collection</h1>
-    <p>Apna matlooba tool select karein:</p>
+    <div class="glass-card">
+        <h1>Azmat Tools</h1>
+        <p>Apna matlooba tool select karein 👇</p>
 
-    <div class="button-container">
-        <a href="/estimator" class="btn btn-green">Material Estimator</a>
-        <a href="/plot" class="btn">Plot Size Converter</a>
-        
-        <div class="whatsapp-section">
-            <p class="whatsapp-text">Online work aur updates ke liye mera WhatsApp Channel join karein:</p>
-            <a href="https://whatsapp.com/channel/0029VaK76LAKQuJTl21Hqe40" target="_blank" class="btn btn-whatsapp">📱 Join WhatsApp Channel</a>
+        <div class="button-container">
+            <a href="/estimator" class="btn btn-green">🧱 Material Estimator</a>
+            <a href="/plot" class="btn">📐 Plot Size Converter</a>
+            
+            <div class="whatsapp-section">
+                <p class="whatsapp-text">Online work aur updates ke liye mera WhatsApp Channel join karein:</p>
+                <a href="https://whatsapp.com/channel/0029VaK76LAKQuJTl21Hqe40" target="_blank" class="btn btn-whatsapp">📱 Join WhatsApp Channel</a>
+            </div>
         </div>
     </div>
 
